@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head><link rel="preconnect" href="https://fonts.gstatic.com">
+<title>Calculador de IMC</title>
+<link  href="style.css" href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet"></head>
+<body>
+<div class = tela1>
+<h1>Calculadora IMC</h1>
+<form>
+<p>Digite seu peso</p>
+</form>
+<input id='peso' type='number'/>
+<span>Kg</span>
+<div>
+<p>Digite sua altura</p>
+<input id='altura' type='number'/>
+ <span>Cm</span>
+</div>
+<div>
+<input id='btn_calcular' class='botao' type="button" value="Calcular">
+</div>
+<div id="resultado"></div>
+<br>
+<p>Se o seu imc não foi ideal, <a href="https://www.smartfit.com.br/" target="blank"><button  style="border-radius: 15px; border: none; background-color: #aa2218; width: 100px; height: 30px; color: white">Clique aqui</button></a>
+</div>
+<script>let botaoCalcular = document.getElementById(btn_calcular);
+	function calculandoIMC(){
+		let peso = document.getElementById("peso").value;
+		let altura = document.getElementById("altura").value/100;
+		let resultado = document.getElementById("resultado")
+		if(altura !== "" && peso !==""){
+			let imc = (peso / (altura*altura)).toFixed(2);
+			let mensagem = "";
+			if(imc < 18.5){
+				mensagem = "Abaixo do peso! Vamos para academia?"
+			}else if(imc < 25){
+				mensagem = "Você está com o peso ideal!"
+			}else if(imc < 30){
+				mensagem = "Você está levemente acima do peso! Vamos para academia? "
+			}else if(imc < 35){
+				mensagem = "Cuidado! Obesidade grau I! Vamos para academia?"
+			}else if(imc < 40){
+				mensagem = "Cuidado! Obesidade grau II! Vamos para academia?"
+			}else {
+				mensagem = "Cuidado! Obesidade grau III! Vamos para academia?"
+			}
+			resultado.textContent = `Seu IMC é ${imc}! ${mensagem}`;      
+		}else{
+			resultado.textContent = "Preencha todos os campos!!!"
+		}
+	}
+	btn_calcular.addEventListener('click', calculandoIMC);</script>
+</body>
+</html>
